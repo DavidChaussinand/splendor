@@ -1,5 +1,7 @@
 import dataclasses
 
+from model.Card import Card
+
 
 @dataclasses.dataclass
 class Board:
@@ -13,3 +15,4 @@ class Board:
     card_level1: int
     card_level2: int
     card_level3: int
+    card: Card()
