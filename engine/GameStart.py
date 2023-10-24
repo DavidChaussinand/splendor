@@ -1,4 +1,5 @@
 from model.Board import Board
+from model.Player import Player
 
 
 class GameStart:
@@ -13,4 +14,12 @@ class GameStart:
             token_number = 5
         elif number_of_player == 4:
             token_number = 7
-        self.game_repository.save_game(Board(yellow=5, red=token_number, green=token_number, white=token_number, blue=token_number, black=token_number, noble_number=noble_number, card_level1=4, card_level2=4, card_level3=4))
+        player_list = []
+        for x in range(number_of_player):
+            player = Player()
+            player_list.append(player)
+
+        game_state = [Board(yellow=5, red=token_number, green=token_number, white=token_number, blue=token_number, black=token_number, noble_number=noble_number, card_level1=4, card_level2=4, card_level3=4),
+                      player_list
+        ]
+        self.game_repository.save_game(game_state)
