@@ -1,3 +1,5 @@
+from pprint import pprint
+
 from model.Board import Board
 from model.Player import Player
 
@@ -7,7 +9,7 @@ class GameStart:
         self.game_repository = game_repository
 
     def execute(self, number_of_player):
-        noble_number = number_of_player+1
+        noble_number = number_of_player + 1
         if number_of_player == 2:
             token_number = 4
         elif number_of_player == 3:
@@ -23,3 +25,6 @@ class GameStart:
                       player_list
         ]
         self.game_repository.save_game(game_state)
+
+    def show_game_state(self):
+        return self.game_repository.get_game()
