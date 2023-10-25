@@ -13,12 +13,15 @@ def game_init():
     return game_repository
 
 def test_take_different_color_token (game_init):
+    player_number = 0
     take_different_color_token = TakeDifferentColorToken(game_init)
+    take_different_color_token.execute(player_number)
+    game = game_init.get_game()
     player = Player()
     player.red=1
     player.green=1
     player.black=1
-    expected = player
-    actual = take_different_color_token.execute(0)
+    expected = list[player.red, player.green, player.black]
+    actual = list[game.player_list[player_number].red,game.player_list[player_number].green,game.player_list[player_number].black]
 
     assert actual == expected
