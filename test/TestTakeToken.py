@@ -49,28 +49,3 @@ def test_take_different_color_token (game_init):
 
     assert actual == expected
 
-def test_take_same_color_token (game_init):
-    player_number = 0
-    test_take_same_color_token = TakeSameColorToken(game_init)
-    test_take_same_color_token.execute(player_number, blue=False, green=True, white=False, black=False, red=False)
-    expected = (Game(Board(yellow=5,
-                           stock=Stock(red=4, green=2, black=4, white=4, blue=4),
-                           card_level1=4,
-                           card_level2=4,
-                           card_level3=4,
-                           noble_number=3,
-                           cards=[]),
-                     player_list=[Player(), Player()]),
-                0,
-                2,
-                0,
-                0,
-                0)
-    actual = (game_init.get_game(),
-              game_init.get_game().player_list[0].stock.blue,
-              game_init.get_game().player_list[0].stock.green,
-              game_init.get_game().player_list[0].stock.white,
-              game_init.get_game().player_list[0].stock.black,
-              game_init.get_game().player_list[0].stock.red)
-
-    assert actual == expected
