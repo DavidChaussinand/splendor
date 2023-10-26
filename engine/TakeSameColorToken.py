@@ -1,4 +1,4 @@
-class TakeDifferentColorToken:
+class TakeSameColorToken:
     def __init__(self, game_repository):
         self.game_repository = game_repository
 
@@ -8,7 +8,7 @@ class TakeDifferentColorToken:
 
         for (color, taken) in tokens:
             if taken:
-                game.board.stock.decrease(color, quantity=1)
-                game.player_list[player_number].stock.increase(color, quantity=1)
+                game.board.stock.decrease(color, quantity=2)
+                game.player_list[player_number].stock.increase(color, quantity=2)
 
         self.game_repository.save_game(game)
