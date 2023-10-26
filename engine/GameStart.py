@@ -21,7 +21,7 @@ class GameStart:
             token_number = 7
         player_list = []
         for x in range(number_of_player):
-            player = Player()
+            player = Player(yellow=0,stock=Stock(0,0,0,0,0),noble_number=0,cards=[])
             player_list.append(player)
 
         board = Board(yellow=5, stock=Stock(token_number, token_number, token_number, token_number, token_number), noble_number=noble_number, card_level1=4, card_level2=4,

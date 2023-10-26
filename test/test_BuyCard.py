@@ -38,6 +38,7 @@ def test_buy_3blue_card(game_repository):
     buy_card.execute(0, 0)
     expected = (3, 0)
     game_after = game_repository.get_game()
+    print(game_after.player_list[0])
     actual = (game_after.player_list[0].cards[0].cost.blue,
               game_after.player_list[0].stock.blue)
     assert actual == expected

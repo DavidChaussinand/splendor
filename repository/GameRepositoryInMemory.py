@@ -11,3 +11,6 @@ class GameRepositoryInMemory:
 
     def save_game(self, game):
         self.game = game
+
+    def feed(self, game):
+        self.game = game
