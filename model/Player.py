@@ -6,7 +6,7 @@ from model.Stock import Stock
 
 @dataclasses.dataclass
 class Player:
-    yellow = 0
-    stock = Stock(0, 0, 0, 0, 0)
-    noble_number = 0
-    cards = []
+    yellow :int
+    stock : Stock
+    noble_number : int
+    cards : list[Card]

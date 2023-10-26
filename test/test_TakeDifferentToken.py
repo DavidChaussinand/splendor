@@ -31,12 +31,13 @@ def test_take_different_color_token (game_init):
                            card_level3=4,
                            noble_number=3,
                            cards=[]),
-                     player_list=[Player(), Player()]),
+                     player_list=[Player(yellow=0,stock=Stock(0,1,1,0,1),noble_number=0,cards=[]), Player(yellow=0,stock=Stock(0,0,0,0,0),noble_number=0,cards=[])]),
                 1,
                 1,
                 1,
                 0,
                 0)
+
     actual = (game_init.get_game(),
               game_init.get_game().player_list[0].stock.blue,
               game_init.get_game().player_list[0].stock.green,
@@ -45,7 +46,6 @@ def test_take_different_color_token (game_init):
               game_init.get_game().player_list[0].stock.red)
 
     assert actual == expected
-
 def test_take_token_from_empty_stock (game_init):
     with pytest.raises(ValueError):
         player_number = 0

@@ -41,7 +41,7 @@ def test_game_should_start(game_repo, game_start, number_of_player, token_number
     actual = game_repo.get_game().board
     player_list = []
     for x in range(number_of_player):
-        player = Player()
+        player = Player(yellow=0,stock=Stock(0,0,0,0,0),noble_number=0,cards=[])
         player_list.append(player)
 
     expected = board_factory(number_of_player)
