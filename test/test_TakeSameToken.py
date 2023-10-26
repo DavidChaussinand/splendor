@@ -42,31 +42,32 @@ def test_take_same_color_token (game_init):
 
 
 def test_take_same_color_token_with_three_token_blue_on_the_board(game_repository):
-    player_number = 0
-    game_repository = GameRepositoryInMemory()
-    test_take_same_color_token = TakeSameColorToken(game_repository)
-    game = Game(Board(yellow=5,
-                           stock=Stock(red=4, green=4, black=4, white=4, blue=3),
-                           card_level1=4,
-                           card_level2=4,
-                           card_level3=4,
-                           noble_number=3,
-                           cards=[]),
-                     player_list=[Player(yellow=0,stock=Stock(0,0,0,0,0),noble_number=0,cards=[]), Player(yellow=0,stock=Stock(0,0,0,0,0),noble_number=0,cards=[])])
+    with pytest.raises(ValueError):
+        player_number = 0
+        game_repository = GameRepositoryInMemory()
+        test_take_same_color_token = TakeSameColorToken(game_repository)
+        game = Game(Board(yellow=5,
+                               stock=Stock(red=4, green=4, black=4, white=4, blue=3),
+                               card_level1=4,
+                               card_level2=4,
+                               card_level3=4,
+                               noble_number=3,
+                               cards=[]),
+                         player_list=[Player(yellow=0,stock=Stock(0,0,0,0,0),noble_number=0,cards=[]), Player(yellow=0,stock=Stock(0,0,0,0,0),noble_number=0,cards=[])])
 
-    # given
-    # que le joueur n'a pas de jeton dans son stock
+        # given
+        # que le joueur n'a pas de jeton dans son stock
 
-    game_repository.feed(game)
+        game_repository.feed(game)
 
-    # when
-    # quand le joueur prend 2 jetons bleu
-    test_take_same_color_token.execute(player_number, blue=True, green=False, white=False, black=False, red=False)
+        # when
+        # quand le joueur prend 2 jetons bleu
+        test_take_same_color_token.execute(player_number, blue=True, green=False, white=False, black=False, red=False)
 
-    # then
-    # action impossible car pas assez de jetons dans le stock
-    actual = game_repository.get_game().board.stock.blue
-    expected = 3
+        # then
+        # action impossible car pas assez de jetons dans le stock
+        actual = game_repository.get_game().board.stock.blue
+        expected = 3
 
 
-    assert actual == expected
+        assert actual == expected
