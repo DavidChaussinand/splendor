@@ -1,10 +1,8 @@
-from pprint import pprint
 
 import pytest
 
 from engine.GameStart import GameStart
 from engine.TakeDifferentColorToken import TakeDifferentColorToken
-from engine.TakeSameColorToken import TakeSameColorToken
 from model.Board import Board
 from model.Game import Game
 from model.Player import Player
@@ -22,7 +20,6 @@ def game_init():
 def create_stock(quantity):
     return Stock(quantity, quantity, quantity, quantity, quantity)
 
-@pytest.mark.skip
 def test_take_different_color_token (game_init):
     player_number = 0
     take_different_color_token = TakeDifferentColorToken(game_init)
@@ -34,12 +31,13 @@ def test_take_different_color_token (game_init):
                            card_level3=4,
                            noble_number=3,
                            cards=[]),
-                     player_list=[Player(), Player()]),
+                     player_list=[Player(yellow=0,stock=Stock(0,1,1,0,1),noble_number=0,cards=[]), Player(yellow=0,stock=Stock(0,0,0,0,0),noble_number=0,cards=[])]),
                 1,
                 1,
                 1,
                 0,
                 0)
+
     actual = (game_init.get_game(),
               game_init.get_game().player_list[0].stock.blue,
               game_init.get_game().player_list[0].stock.green,
@@ -48,4 +46,23 @@ def test_take_different_color_token (game_init):
               game_init.get_game().player_list[0].stock.red)
 
     assert actual == expected
+def test_take_token_from_empty_stock (game_init):
+    with pytest.raises(ValueError):
+        player_number = 0
+        take_different_color_token = TakeDifferentColorToken(game_init)
+        game = game_init.get_game()
+        game.board.stock.green=0
+        game_init.save_game(game)
+        take_different_color_token.execute(player_number, blue=True, green=True, white=True, black=False, red=False)
 
+def test_take_no_token (game_init):
+    with pytest.raises(ValueError):
+        player_number = 0
+        take_different_color_token = TakeDifferentColorToken(game_init)
+        take_different_color_token.execute(player_number, blue=False, green=False, white=False, black=False, red=False)
+
+def test_take_to_many (game_init):
+    with pytest.raises(ValueError):
+        player_number = 0
+        take_different_color_token = TakeDifferentColorToken(game_init)
+        take_different_color_token.execute(player_number, blue=True, green=True, white=True, black=True, red=True)
