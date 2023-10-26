@@ -1,7 +1,4 @@
-from pprint import pprint
-
 from model.Board import Board
-from model.Card import Card
 from model.Game import Game
 from model.Player import Player
 from model.Stock import Stock
@@ -29,6 +26,3 @@ class GameStart:
                       cards=[])
         game = Game(board, player_list)
         self.game_repository.save_game(game)
-
-    def show_game_state(self):
-        return self.game_repository.get_game()
