@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.template import loader
 
 from engine.GameStart import GameStart
 from engine.Query import Query
@@ -20,5 +20,6 @@ def take_different_tokens(request, player_number):
 
     game_start.execute(2)
     game_state = query.show_game_state()
-
-    return HttpResponse("prend tes jetons connard : le joueur est le numéro " + str(player_number))
+    template = loader.get_template("webgame/take_different_tokens.html")
+    context = {}
+    return HttpResponse(template.render(context,request))
