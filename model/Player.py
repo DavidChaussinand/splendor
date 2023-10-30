@@ -10,3 +10,4 @@ class Player:
     stock : Stock
     noble_number : int
     cards : list[Card]
+    cards_reserved: list[Card]

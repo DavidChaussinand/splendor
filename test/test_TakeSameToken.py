@@ -32,8 +32,8 @@ def test_take_same_color_token (game_init):
                       card_level3=4,
                       noble_number=3,
                       cards=[]),
-                player_list=[Player(yellow=0, stock=Stock(0, 0, 0, 0, 0), noble_number=0, cards=[]),
-                             Player(yellow=0, stock=Stock(0, 0, 0, 0, 0), noble_number=0, cards=[])])
+                player_list=[Player(yellow=0, stock=Stock(0, 0, 0, 0, 0), noble_number=0, cards=[],cards_reserved=[]),
+                             Player(yellow=0, stock=Stock(0, 0, 0, 0, 0), noble_number=0, cards=[],cards_reserved=[])])
     game_repository.feed(game)
     test_take_same_color_token.execute(player_number, blue=True, green=False, white=False, black=False, red=False)
     actual = game_repository.get_game().board.stock.blue
@@ -53,7 +53,7 @@ def test_take_same_color_token_with_three_token_blue_on_the_board(game_repositor
                                card_level3=4,
                                noble_number=3,
                                cards=[]),
-                         player_list=[Player(yellow=0,stock=Stock(0,0,0,0,0),noble_number=0,cards=[]), Player(yellow=0,stock=Stock(0,0,0,0,0),noble_number=0,cards=[])])
+                         player_list=[Player(yellow=0,stock=Stock(0,0,0,0,0),noble_number=0,cards=[],cards_reserved=[]), Player(yellow=0,stock=Stock(0,0,0,0,0),noble_number=0,cards=[],cards_reserved=[])])
 
         # given
         # que le joueur n'a pas de jeton dans son stock

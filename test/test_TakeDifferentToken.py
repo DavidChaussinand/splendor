@@ -31,7 +31,7 @@ def test_take_different_color_token (game_init):
                            card_level3=4,
                            noble_number=3,
                            cards=[]),
-                     player_list=[Player(yellow=0,stock=Stock(0,1,1,0,1),noble_number=0,cards=[]), Player(yellow=0,stock=Stock(0,0,0,0,0),noble_number=0,cards=[])]),
+                     player_list=[Player(yellow=0,stock=Stock(0,1,1,0,1),noble_number=0,cards=[],cards_reserved=[]), Player(yellow=0,stock=Stock(0,0,0,0,0),noble_number=0,cards=[],cards_reserved=[])]),
                 1,
                 1,
                 1,
