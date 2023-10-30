@@ -1,15 +1,20 @@
 from django.http import HttpResponse
 from django.template import loader
+from django.shortcuts import render
 
 from engine.GameStart import GameStart
 from engine.Query import Query
 from engine.TakeDifferentColorToken import TakeDifferentColorToken
 from repository.GameRepositoryInMemory import GameRepositoryInMemory
 
-
 # Create your views here.
 def index(request):
     return HttpResponse("Hello world")
+
+def game_launcher(request):
+    game_repository = GameRepositoryInMemory()
+    GameStart(game_repository).execute(number_of_player=2)
+    return HttpResponse(str(game_repository.get_game()))
 
 
 def take_different_tokens(request, player_number):
