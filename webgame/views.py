@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 from engine.GameStart import GameStart
+from engine.Query import Query
 from repository.GameRepositoryInMemory import GameRepositoryInMemory
 
 
@@ -9,7 +10,9 @@ from repository.GameRepositoryInMemory import GameRepositoryInMemory
 def index(request):
     return HttpResponse("Hello world")
 
-def game_launcher(request):
+def game_launcher(request, numberofplayer):
     game_repository = GameRepositoryInMemory()
-    GameStart(game_repository).execute(number_of_player=2)
-    return HttpResponse(str(game_repository.get_game()))
+    GameStart(game_repository).execute(number_of_player=numberofplayer)
+    query = Query(game_repository).show_game_state()
+    return HttpResponse(str(query))
+

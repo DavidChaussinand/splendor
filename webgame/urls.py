@@ -4,5 +4,6 @@ from webgame import views
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("gamelauncher", views.game_launcher, name="launchgame")
+    path("gamelauncher/<int:numberofplayer>/", views.game_launcher, name="launchgame"),
+
 ]

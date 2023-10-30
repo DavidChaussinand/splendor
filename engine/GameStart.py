@@ -9,6 +9,8 @@ class GameStart:
         self.game_repository = game_repository
 
     def execute(self, number_of_player):
+        if number_of_player > 4:
+            raise (TooManyPlayersException)
         noble_number = number_of_player + 1
         if number_of_player == 2:
             token_number = 4
@@ -26,3 +28,7 @@ class GameStart:
                       cards=[])
         game = Game(board, player_list)
         self.game_repository.save_game(game)
+
+
+class TooManyPlayersException (Exception):
+    pass
