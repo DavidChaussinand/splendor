@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>board</title>
+</head>
+<body>
+    <h1>Etat du jeu</h1>
+    <div>{{ game_state }}</div>
+    <h3>Actions</h3>
+    <a href="{% url "take_different_tokens"  player_number=0 %}">Prendre des jetons</a>
+</body>
+</html>

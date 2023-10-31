@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from engine.GameStart import GameStart
 from engine.Query import Query
@@ -8,21 +8,26 @@ from engine.TakeDifferentColorToken import TakeDifferentColorToken
 from repository.GameRepositoryInMemory import GameRepositoryInMemory
 from webgame.forms import TokenForm
 
+game_repository = GameRepositoryInMemory()
+
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Hello world")
+    return render(request, "webgame/index.html")
 
 
 def game_launcher(request):
-    game_repository = GameRepositoryInMemory()
     GameStart(game_repository).execute(number_of_player=2)
-    return HttpResponse(str(game_repository.get_game()))
+    return redirect("board")
+
+def board(request):
+
+    game_state = game_repository.get_game()
+    return render(request, "webgame/board.html", {"game_state": game_state})
 
 
 def take_different_tokens(request, player_number):
     # game launch
-    game_repository = GameRepositoryInMemory()
     game_start = GameStart(game_repository)
     query = Query(game_repository)
     game_start.execute(2)
@@ -37,7 +42,7 @@ def take_different_tokens(request, player_number):
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
-            return HttpResponseRedirect("/thanks/")
+            return redirect("board")
 
     # if a GET (or any other method) we'll create a blank form
     else:
