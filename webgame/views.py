@@ -37,7 +37,10 @@ def take_different_tokens(request, player_number):
         # check whether it's valid:
         if form.is_valid():
             take_different_token = TakeDifferentColorToken(game_repository)
-            take_different_token.execute(0, blue=form.cleaned_data["blue"], black=form.cleaned_data["black"], white=form.cleaned_data["white"], red= form.cleaned_data["red"], green=form.cleaned_data["green"])
+            try:
+                take_different_token.execute(0, blue=form.cleaned_data["blue"], black=form.cleaned_data["black"], white=form.cleaned_data["white"], red= form.cleaned_data["red"], green=form.cleaned_data["green"])
+            except ValueError:
+                return redirect("take_different_tokens", player_number=0)
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
