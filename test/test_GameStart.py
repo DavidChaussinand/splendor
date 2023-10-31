@@ -1,6 +1,6 @@
 import pytest
 
-from engine.GameStart import GameStart
+from engine.GameStart import GameStart, TooManyPlayersException
 from model.Board import Board
 from model.Stock import Stock
 from model.Player import Player
@@ -46,3 +46,10 @@ def test_game_should_start(game_repo, game_start, number_of_player, token_number
 
     expected = board_factory(number_of_player)
     assert actual == expected
+
+@pytest.mark.parametrize("number_of_players",[
+    (5),(6)
+])
+def test_should_tell_when_too_many_players (number_of_players,game_start):
+    with pytest.raises(TooManyPlayersException):
+        game_start.execute(number_of_players)
