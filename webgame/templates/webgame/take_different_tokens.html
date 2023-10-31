@@ -6,5 +6,12 @@
 </head>
 <body>
     <h1> Prendre jetons différents</h1>
+
+    <form action="/web/take_different_tokens/1" method="post">
+        {% csrf_token %}
+        {{ tokenform }}
+        <input type="submit" value="Submit">
+    </form>
+
 </body>
 </html>
