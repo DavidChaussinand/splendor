@@ -6,9 +6,10 @@ from engine.GameStart import GameStart
 from engine.Query import Query
 from engine.TakeDifferentColorToken import TakeDifferentColorToken
 from repository.GameRepositoryInMemory import GameRepositoryInMemory
+from repository.GameRepositorySql import GameRepositorySql
 from webgame.forms import TokenForm
 
-game_repository = GameRepositoryInMemory()
+game_repository = GameRepositorySql()
 
 
 # Create your views here.

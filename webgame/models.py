@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 
 
-class StockDB(models.Model):
+class Stock(models.Model):
     red = models.IntegerField(default=0)
     # green = models.IntegerField(default=0)
     # blue = models.IntegerField(default=0)
@@ -12,9 +12,9 @@ class StockDB(models.Model):
     # white = models.IntegerField(default=0)
 
 
-class BoardDB(models.Model):
+class Board(models.Model):
     # yellow = models.IntegerField(default=5)
-    stock = models.ForeignKey(StockDB, on_delete=models.CASCADE)
+    stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
     # noble_number = models.IntegerField(default=0)
     # card_level1 = models.IntegerField(default=0)
     # card_level2 = models.IntegerField(default=0)
@@ -22,14 +22,14 @@ class BoardDB(models.Model):
     # cards = models.JSONField
 
 
-class GameDB(models.Model):
-    board = models.ForeignKey(BoardDB, on_delete=models.CASCADE)
+class Game(models.Model):
+    board = models.ForeignKey(Board, on_delete=models.CASCADE)
 
 
-class PlayerDB(models.Model):
+class Player(models.Model):
     # yellow = models.IntegerField(default=0)
-    stock = models.ForeignKey(StockDB, on_delete=models.CASCADE)
-    game = models.ForeignKey(GameDB, on_delete=models.CASCADE)
+    stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
     # noble_number = models.IntegerField(default=0)
     # cards = models.JSONField
     # cards_reserved = models.JSONField
